@@ -3,6 +3,8 @@ import type { TShape } from '@/types';
 import { MaterialType, ShapeType, ViewType } from '@/dicts';
 import { Ellipse, Rect } from '@antv/g';
 
+export type IShape = Ellipse | Rect;
+
 const useShape = (config: TShape) => {
     // 通过视图获取尺寸
     const view = ref(config.view || ViewType.Front);
@@ -43,7 +45,7 @@ const useShape = (config: TShape) => {
     const getSurface = () => (config.type === ShapeType.Cylinder ? getCylinderSurface() : getCubeSurface());
 
     // 渲染
-    let surface = getSurface();
+    let surface: IShape = getSurface();
 
     // 修改视图
     const changeView = (val: ViewType) => {

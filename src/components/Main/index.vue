@@ -5,24 +5,23 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue';
 import { Canvas, type IChildNode } from '@antv/g';
-import { Renderer } from '@antv/g-canvas';
+import { Renderer } from '@antv/g-webgl';
 import { Plugin } from '@antv/g-plugin-yoga';
 import { data } from './data';
-import { useItem } from './item';
+import { useItem } from '@/packages/Item';
 
-const config = reactive({ id: 'container' });
+const config = reactive({ id: 'container', width: 0, height: 0 });
 
 onMounted(() => {
     const docWidth = document?.documentElement?.clientWidth ?? 1000;
     const docHeight = document?.documentElement?.clientHeight ?? 700;
-    const width = 1000;
-    const height = 700;
+    config.width = docWidth - 32 - 10;
+    config.height = docHeight - 32 - 10;
 
     const renderer = new Renderer();
-    // const plugin = new Plugin({});
-    // renderer.registerPlugin(plugin);
+    // renderer.registerPlugin(new Plugin());
 
-    const canvas = new Canvas({ container: `${config.id}`, width, height, renderer });
+    const canvas = new Canvas({ container: `${config.id}`, width: config.width, height: config.height, renderer });
 
     const appendToCanvas = async (children: IChildNode[]) => {
         await canvas.ready;
@@ -31,7 +30,7 @@ onMounted(() => {
         });
     };
 
-    appendToCanvas(data.map(item => useItem(item)));
+    appendToCanvas(data.map(item => useItem(item, config)));
 });
 </script>
 

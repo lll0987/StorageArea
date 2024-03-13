@@ -15,6 +15,7 @@
     "@antv/g": "^5.18.25",
     "@antv/g-canvas": "^1.11.27",
     "@antv/g-plugin-yoga": "^1.9.22",
+    "@antv/g-webgl": "^1.9.37",
     "konva": "^9.3.6",
     "pinia": "^2.1.7",
     "vue": "^3.4.21"
