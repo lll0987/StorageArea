@@ -1,5 +1,5 @@
 # 一个多维表格视图插件的demo
-![TypeScript](https://img.shields.io/badge/language-typescript-blue.svg) ![G](https://img.shields.io/badge/using-antv/G-873bf4.svg)
+![TypeScript](https://img.shields.io/badge/language-typescript-blue.svg) ![G](https://img.shields.io/badge/using-antv/G-873bf4.svg)    
 为了使用飞书搭建的个人物品仓库项目
 
 ## Done
