@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue';
 import type { TShape } from '@/types';
-import { MaterialType, ShapeType, ViewType } from '@/dicts';
+import { MaterialType, ShapeType, ViewType } from '@/enums';
 import { Ellipse, Rect } from '@antv/g';
 
 export type IShape = Ellipse | Rect;

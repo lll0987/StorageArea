@@ -1,4 +1,4 @@
-import { MaterialType, ShapeType, ShelfType, ViewType } from '@/dicts';
+import { DirectionType, MaterialType, PositionType, ShapeType, ShelfType, ViewType } from '@/enums';
 
 export interface TSize {
     width: number;
@@ -20,8 +20,17 @@ export interface TShape extends TSize, TMaterial {
     highlightColor?: string;
 }
 
-export interface TDimension extends TSize {
-    scaledSize: TSize;
+export interface TSegment {
+    length: number;
+    spacing: number;
+    scaledLength?: number;
+    scaledSpacing?: number;
+}
+export interface TDimension extends TSegment {
+    unit?: string;
+    direction?: DirectionType;
+    position?: PositionType;
+    segments?: TSegment[];
 }
 
 export interface TShelf extends TMaterial {
@@ -57,6 +66,9 @@ export interface TPlate extends TSize, TMaterial {}
 interface ILocation extends TPostion {
     box?: string;
 }
+interface ISegment extends TSegment {
+    locations: ILocation[];
+}
 export interface TItem extends TSize {
-    segments: Array<{ height: number; spacing: number; locations: ILocation[] }>;
+    segments: ISegment[];
 }

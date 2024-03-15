@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import { Group } from '@antv/g';
 import type { TShelf } from '@/types';
-import { ShelfType } from '@/dicts';
+import { ShelfType } from '@/enums';
 import { useCube, useCylinder } from '../Shape';
 
 export const useShelf = (config: TShelf) => {
@@ -18,17 +18,20 @@ export const useShelf = (config: TShelf) => {
         const { shape: left } = useCube({
             width: dw.value,
             height: config.outerSize.height,
-            depth: config.outerSize.depth
+            depth: config.outerSize.depth,
+            border: false
         });
         const { shape: right } = useCube({
             width: dw.value,
             height: config.outerSize.height,
-            depth: config.outerSize.depth
+            depth: config.outerSize.depth,
+            border: false
         });
         const { shape: backboard } = useCube({
             width: config.innerSize.width,
             height: config.outerSize.height,
-            depth: dp.value
+            depth: dp.value,
+            border: false
         });
 
         left.setPosition(0, 0, 0);

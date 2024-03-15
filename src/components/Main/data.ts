@@ -14,10 +14,10 @@ export const data = [
         height: 120,
         depth: 35,
         segments: [
-            { height: 0, spacing: 20, locations: [] },
-            { height: 2, spacing: 23, locations: [{ pk: 1, verticalPK: 0, horizontalPK: 0, frontPK: 0 }] },
+            { length: 0, spacing: 20, locations: [] },
+            { length: 2, spacing: 23, locations: [{ pk: 1, verticalPK: 0, horizontalPK: 0, frontPK: 0 }] },
             {
-                height: 2,
+                length: 2,
                 spacing: 24,
                 locations: [
                     { pk: 1, verticalPK: 0, horizontalPK: 0, frontPK: 0, box: 'HZDL' },
@@ -27,7 +27,7 @@ export const data = [
                 ]
             },
             {
-                height: 2,
+                length: 2,
                 spacing: 25,
                 locations: [
                     { pk: 1, verticalPK: 0, horizontalPK: 0, frontPK: 0, box: 'HZDM' },
@@ -40,7 +40,7 @@ export const data = [
                 ]
             },
             {
-                height: 2,
+                length: 2,
                 spacing: 20,
                 locations: [
                     { pk: 1, verticalPK: 0, horizontalPK: 0, frontPK: 0 },
