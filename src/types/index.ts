@@ -20,19 +20,6 @@ export interface TShape extends TSize, TMaterial {
     highlightColor?: string;
 }
 
-export interface TSegment {
-    length: number;
-    spacing: number;
-    scaledLength?: number;
-    scaledSpacing?: number;
-}
-export interface TDimension extends TSegment {
-    unit?: string;
-    direction?: DirectionType;
-    position?: PositionType;
-    segments?: TSegment[];
-}
-
 export interface TShelf extends TMaterial {
     type?: ShelfType;
     innerSize: TSize;
@@ -45,14 +32,11 @@ export interface TBox extends TSize, TMaterial {
     id: string;
 }
 
-export interface TPostion {
+export interface TLocation {
     pk: number;
     verticalPK: number;
     horizontalPK: number;
     frontPK: number;
-}
-
-export interface TLocation extends TPostion {
     box?: TBox;
 }
 
@@ -61,14 +45,24 @@ export interface TLayer extends TSize {
     locations: TLocation[];
 }
 
-export interface TPlate extends TSize, TMaterial {}
+export interface TSegment {
+    length: number;
+    spacing: number;
+    scaledLength?: number;
+    scaledSpacing?: number;
+}
 
-interface ILocation extends TPostion {
-    box?: string;
+export interface ISegment extends TSegment {
+    locations: TLocation[];
 }
-interface ISegment extends TSegment {
-    locations: ILocation[];
-}
+
 export interface TItem extends TSize {
     segments: ISegment[];
+}
+
+export interface TDimension extends TSegment {
+    unit?: string;
+    direction?: DirectionType;
+    position?: PositionType;
+    segments?: TSegment[];
 }

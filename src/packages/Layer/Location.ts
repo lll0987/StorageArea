@@ -1,11 +1,12 @@
 import { Group } from '@antv/g';
 import type { TLayer } from '@/types';
 import { useCube, type IShape } from '../Shape';
+import { getBoundsSize } from '@/util';
 
 export const useLocation = (config: TLayer) => {
     const { width, depth, spacing: height, locations } = config;
     const len = locations.filter(i => !i.box).length;
-    const group = new Group({ style: { x: 0, y: 0 } });
+    const group = new Group();
 
     if (len > 1 || len === locations.length) {
         const { shape: location } = useCube({ width, height, depth, border: false, color: 'transparent' });
@@ -28,14 +29,12 @@ export const useLocation = (config: TLayer) => {
                 const item = map.get(horizontalPK);
                 if (!item) break;
                 // item.getBoundingClientRect().width
-                const iwidth = item.getBounds().max[0] - item.getBounds().min[0];
-                x = x + item.getPosition()[0] + iwidth;
+                x = x + item.getLocalPosition()[0] + getBoundsSize(item).width;
             }
             if (verticalPK) {
                 const item = map.get(verticalPK);
                 if (!item) break;
-                const iheight = item.getBounds().max[1] - item.getBounds().min[1];
-                y = y - iheight;
+                y = y - getBoundsSize(item).height;
                 // y = y - item.y + item.height;
             }
 
@@ -46,7 +45,7 @@ export const useLocation = (config: TLayer) => {
                 border: !!box,
                 color: box?.color ?? 'transparent'
             });
-            item.setPosition(x, y);
+            item.setLocalPosition(x, y);
             map.set(pk, item);
         }
 

@@ -34,11 +34,11 @@ export const useShelf = (config: TShelf) => {
             border: false
         });
 
-        left.setPosition(0, 0, 0);
-        right.setPosition(xr.value, 0, 0);
-        backboard.setPosition(dw.value, 0, z.value);
-
         shelf.append(left, right, backboard);
+
+        left.setLocalPosition(0, 0, 0);
+        right.setLocalPosition(xr.value, 0, 0);
+        backboard.setLocalPosition(dw.value, 0, z.value);
     } else {
         const getShape = type.value === ShelfType.Pillar ? useCube : useCylinder;
         const { shape: pla } = getShape({ width: dw.value, height: config.outerSize.height, depth: dp.value });
@@ -46,12 +46,12 @@ export const useShelf = (config: TShelf) => {
         const { shape: pra } = getShape({ width: dw.value, height: config.outerSize.height, depth: dp.value });
         const { shape: prb } = getShape({ width: dw.value, height: config.outerSize.height, depth: dp.value });
 
-        pla.setPosition(0, 0, 0);
-        plb.setPosition(0, 0, z.value);
-        pra.setPosition(xr.value, 0, 0);
-        prb.setPosition(xr.value, 0, z.value);
-
         shelf.append(pla, plb, pra, prb);
+
+        pla.setLocalPosition(0, 0, 0);
+        plb.setLocalPosition(0, 0, z.value);
+        pra.setLocalPosition(xr.value, 0, 0);
+        prb.setLocalPosition(xr.value, 0, z.value);
     }
 
     return shelf;

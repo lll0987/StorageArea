@@ -4,13 +4,17 @@ import { useCube } from '../Shape';
 import { useLocation } from './Location';
 
 export const useLayer = (config: TLayer) => {
-    const space = useLocation(config);
-    space.setPosition(0, 0, 0);
-
-    const { shape: plate } = useCube(config);
-    plate.setPosition(0, config.spacing, 0);
-
     const layer = new Group();
-    layer.append(space, plate);
+
+    const space = useLocation(config);
+    layer.append(space);
+    space.setLocalPosition(0, 0, 0);
+
+    if (config.height) {
+        const { shape: plate } = useCube(config);
+        layer.append(plate);
+        plate.setLocalPosition(0, config.spacing, 0);
+    }
+
     return layer;
 };
